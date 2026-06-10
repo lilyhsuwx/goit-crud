@@ -1,0 +1,67 @@
+{
+  "iceCreams": [
+    {
+      "id": "4",
+      "name": "Фісташкове",
+      "type": "горіхове",
+      "calories": 240,
+      "price": 45,
+      "description": "Ароматне фісташкове морозиво з подрібненими горіхами.",
+      "image": "https://streetfood.in.ua/wp-content/uploads/2016/03/%D0%BC%D0%BE%D1%80%D0%BE%D0%B7%D0%B8%D0%B2%D0%BE-%D1%84%D1%80%D1%96.jpg"
+    },
+    {
+      "id": "5",
+      "name": "М'ятне з шоколадом",
+      "type": "комбіноване",
+      "calories": 210,
+      "price": 40,
+      "description": "Освіжаюча м'ята та хрусткі шматочки темного шоколаду.",
+      "image": "https://glavcom.ua/img/article/4224/28_main-v1498456913.jpg"
+    },
+    {
+      "id": "6",
+      "name": "Солона карамель",
+      "type": "кремове",
+      "calories": 230,
+      "price": 42,
+      "description": "Кремове морозиво з солоною карамеллю та вершковим післясмаком.",
+      "image": "https://cooking-img.nv.ua/cooking/recipe/18447/niwyTf4ae6.webp?q=85&w=778"
+    },
+    {
+      "id": "7",
+      "name": "Манго сорбет",
+      "type": "сорбет",
+      "calories": 160,
+      "price": 37,
+      "description": "Легкий сорбет з натурального стиглого манго.",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScnzivNBL34_W3gZSTVybVxviRnisJv_QTYQ&s"
+    },
+    {
+      "id": "8",
+      "name": "Чорниця-йогурт",
+      "type": "йогуртове",
+      "calories": 180,
+      "price": 39,
+      "description": "Натуральний йогурт з чорничним пюре та легкою кислинкою.",
+      "image": "https://images.unian.net/photos/2017_01/thumb_files/800_0_1483703699-6646.jpg"
+    },
+    {
+      "id": "9",
+      "name": "Бананове",
+      "type": "фруктове",
+      "calories": 200,
+      "price": 34,
+      "description": "Солодкий банановий смак з кремовою текстурою.",
+      "image": "https://comments.ua/img/publications/5YnPxsuGLBfoOqib2j_d-12w_eaIFNI_.jpg"
+    },
+    {
+      "id": "10",
+      "name": "Кокосове",
+      "type": "екзотичне",
+      "calories": 215,
+      "price": 43,
+      "description": "Морозиво на основі кокосового молока з ароматом тропіків.",
+      "image": "https://lifestyle-ua.com/wp-content/uploads/2023/05/morozyvo-z-dostupnyh-produktiv9.webp"
+    }
+  ]
+}
