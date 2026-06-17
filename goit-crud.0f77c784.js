@@ -207,7 +207,7 @@
       });
     }
   }
-})({"84Pvc":[function(require,module,exports,__globalThis) {
+})({"7wZbQ":[function(require,module,exports,__globalThis) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
@@ -714,7 +714,62 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 }
 
 },{}],"2R06K":[function(require,module,exports,__globalThis) {
+var _getIce = require("./appi/getIce");
+// console.log(getIce);
+const listEl = document.querySelector(".list");
+(0, _getIce.getIce)().then((res)=>console.log(res));
+function createIceMurcup(arr) {
+    const item = arr.map((id, image, calories, description, name, prise, type)=>{
+        return `<li id="${id}" class="item">
+                    <img class="img" src="${image}" alt="${description}">
+                    <p>${name}</p>
+                    <p>${prise}</p>
+                    <p>${type}</p>
+                    <p>${description}</p>
+                    <p>${calories}</p>
+                </li>`;
+    }).join();
+    listEl.innerHTML = item;
+}
 
-},{}]},["84Pvc","2R06K"], "2R06K", "parcelRequire88f6", {})
+},{"./appi/getIce":"bhsQy"}],"bhsQy":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "getIce", ()=>getIce);
+function getIce() {
+    return fetch("http://localhost:3000/iceCreams").then((res)=>res.json());
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"jnFvT":[function(require,module,exports,__globalThis) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, '__esModule', {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === 'default' || key === '__esModule' || Object.prototype.hasOwnProperty.call(dest, key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}]},["7wZbQ","2R06K"], "2R06K", "parcelRequire88f6", {})
 
 //# sourceMappingURL=goit-crud.0f77c784.js.map
