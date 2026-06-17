@@ -1,13 +1,13 @@
 {
   "iceCreams": [
     {
-      "id": "5",
+      "image": "https://glavcom.ua/img/article/4224/28_main-v1498456913.jpg",
       "name": "М'ятне з шоколадом",
+      "price": "35",
       "type": "комбіноване",
-      "calories": 210,
-      "price": 40,
       "description": "Освіжаюча м'ята та хрусткі шматочки темного шоколаду.",
-      "image": "https://glavcom.ua/img/article/4224/28_main-v1498456913.jpg"
+      "calories": "210",
+      "id": "5"
     },
     {
       "id": "6",

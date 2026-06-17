@@ -1,6 +1,7 @@
 import {getIceCream} from "./appi/getIceCream";
 import {addIceCream} from "./appi/addIceCream";
 import { deleteIceCream } from "./appi/deleteIceCream";
+import { updateIceCream } from "./appi/updateIceCream";
 
 
 const listEl = document.querySelector(".list");
@@ -8,21 +9,23 @@ const btnOpen = document.querySelector(".open");
 const backdropEl = document.querySelector(".backdrop"); 
 const formEl = document.querySelector("form");
 
+let currentId = null;
+
 getIceCream().then(res => createIceMurcup(res))
 
 function createIceMurcup(arr) {
     const item = arr.map(({id, name, price, calories, image,  description,   type}) => {
         return `<li id="${id}" class="item">
                     <img class="img" src="${image}" alt="${name}">
-                    <h2>Назва: ${name}</h2>
-                    <p>Опис: ${description}</p>
-                    <p>Ціна: ${price}</p>
-                    <p>Калорійність: ${calories}</p>
-                    <p>Тип: ${type}</p>
+                    <h2>Назва: <span class="name-value">${name}</span></h2>
+                    <p class="desc">Опис: <span class="desc-value">${description}</span></p>
+                    <p class="price">Ціна: <span class="price-value">${price}</span></p>
+                    <p class="calories">Калорійність: <span class="calories-value">${calories}</span></p>
+                    <p class="type">Тип: <span class="type-value">${type}</span></p>
                     <div class="wrap">
                         <button class="edit" type="button" data-action="edit">Edit</button>
                         <button class="delete" type="button" data-action="delete">Delete</button>
-                    </dev>
+                    </div>
                 </li>`
     }).join("");
     listEl.innerHTML = item;
@@ -58,6 +61,18 @@ formEl.addEventListener("submit", (e) => {
         description: e.currentTarget.elements.desc.value,
         calories: e.currentTarget.elements.calories.value
     }
+    if(currentId) {
+        updateIceCream(data, currentId)
+        .then(getIceCream)
+        .then(res => createIceMurcup(res))
+        .finally(() => {
+            formEl.reset()
+            currentId = null;
+            closeModal()
+        })
+        return
+    }
+
     addIceCream(data)
     .then(getIceCream)
     .then(res => createIceMurcup(res))
@@ -85,6 +100,17 @@ listEl.addEventListener("click", (evt) => {
 
     if(action ===  "edit") {
         openModal() 
+        currentId = id
+        
+
+
+
+        formEl.elements.link.value = li.querySelector("img").src;
+        formEl.elements.name.value = li.querySelector(".name-value").textContent;
+        formEl.elements.price.value = li.querySelector(".price-value").textContent;
+        formEl.elements.type.value = li.querySelector(".type-value").textContent;
+        formEl.elements.desc.value = li.querySelector(".desc-value").textContent;
+        formEl.elements.calories.value = li.querySelector(".calories-value").textContent;
     }
     
 })
