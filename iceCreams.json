@@ -1,15 +1,6 @@
 {
   "iceCreams": [
     {
-      "id": "4",
-      "name": "Фісташкове",
-      "type": "горіхове",
-      "calories": 240,
-      "price": 45,
-      "description": "Ароматне фісташкове морозиво з подрібненими горіхами.",
-      "image": "https://streetfood.in.ua/wp-content/uploads/2016/03/%D0%BC%D0%BE%D1%80%D0%BE%D0%B7%D0%B8%D0%B2%D0%BE-%D1%84%D1%80%D1%96.jpg"
-    },
-    {
       "id": "5",
       "name": "М'ятне з шоколадом",
       "type": "комбіноване",
@@ -63,5 +54,6 @@
       "description": "Морозиво на основі кокосового молока з ароматом тропіків.",
       "image": "https://lifestyle-ua.com/wp-content/uploads/2023/05/morozyvo-z-dostupnyh-produktiv9.webp"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

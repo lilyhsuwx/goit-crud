@@ -1,31 +1,39 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="./reset.css">
-    <link rel="stylesheet" href="./style.css">
-</head>
-<body>
-
-    <button class="btn" type="button">Відкрити модальне вікно</button>
-    <ul class="list"></ul>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/3.0.1/modern-normalize.min.css"
+      integrity="sha512-q6WgHqiHlKyOqslT/lgBgodhd03Wp4BEqKeW6nNtlOY4quzyG3VoQKFrieaCeSnuVseNKRGpGeDU3qPmabCANg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./reset.css" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="box">
+      <button class="open" type="button">Відкрити модальне вікно</button>
+      <ul class="list"></ul>
+    </div>
 
     <div class="backdrop">
-        <div class="modal">
-            <form>
-                <input type="text" placeholder="посилання на зображення">
-                <input type="text" placeholder="назва">
-                <input type="text" placeholder="ціна">
-                <input type="text" placeholder="тип">
-                <input type="text" placeholder="опис">
-                <input type="text" placeholder="калорій">
-                <button type="submit">Відправити</button>
-            </form>
-        </div>
+      <div class="modal">
+        <form>
+          <input name="link" type="text" placeholder="посилання на зображення" />
+          <input name="name" type="text" placeholder="назва" />
+          <input name="price" type="text" placeholder="ціна" />
+          <input name="type" type="text" placeholder="тип" />
+          <input name="desc" type="text" placeholder="опис" />
+          <input name="calories" type="text" placeholder="калорій" />
+          <button type="submit">Відправити</button>
+        </form>
+      </div>
     </div>
-    
+
     <script type="module" src="./app.js"></script>
-</body>
+  </body>
 </html>
