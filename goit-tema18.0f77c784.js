@@ -714,7 +714,92 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 }
 
 },{}],"2R06K":[function(require,module,exports,__globalThis) {
+// 1. Реалізуйте функцію getStudents для отримання списку всіх студентів (HTTP GET /students) getStudents
+// 2. Реалізуйте функцію addStudent для додавання нового студента (HTTP POST /students) 
+// 3. Реалізуйте функцію updateStudent  для часткового оновлення студента (HTTP PATCH /students/{id})
+// 4. Реалізуйте функцію  для deleteStudent видалення студента за його ідентифікатором (HTTP DELETE /students/{id})
+// 7. Написати JavaScript-код для обробки подій користувача.
+// 7.1. Додати обробники подій для кнопок, щоб вони виконували відповідні HTTP-запити.
+// 7.2. При натисканні на кнопку "Отримати студентів" (GET), виконати HTTP-запит GET /students і відобразити отримані дані в таблиці.
+// 7.3. Реалізувати форму для додавання нового студента. При натисканні на кнопку "Додати студента" (POST), зібрати дані з полів вводу, сформувати об'єкт з даними  і виконати HTTP-запит POST /students, щоб додати нового студента до бази даних.
+// 7.4. Реалізувати можливість оновлення інформації про студента. Для кожного студента в таблиці додати кнопку "Оновити". При натисканні на цю кнопку, виконати HTTP-запит PUT /students/:id, де :id — ідентифікатор фільму, і відправити оновлені дані про студента на сервер.
+// 7.5. Додати можливість видалення студента. Для кожного студента в таблиці додати кнопку "Видалити". При натисканні на цю кнопку, виконати HTTP-запит DELETE /students/:id.
+var _getStudentsJs = require("./appi/getStudents.js");
+var _addStudentJs = require("./appi/addStudent.js");
+// Функція для отримання всіх студентів
+function getStudents() {
+// твій код
+}
+// Функція для відображення студентів у таблиці
+function renderStudents(students) {
+// твій код
+}
+// Функція для додавання нового студента
+function addStudent(e) {
+// твій код
+}
+// Функція для оновлення студента
+function updateStudent(id) {
+// твій код
+}
+// Функція для видалення студента
+function deleteStudent(id) {
+// твій код
+}
 
-},{}]},["7wZbQ","2R06K"], "2R06K", "parcelRequire724c", {})
+},{"./appi/getStudents.js":"6zDTK","./appi/addStudent.js":"alUnB"}],"6zDTK":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "getStudents", ()=>getStudents);
+function getStudents() {
+    return fetch("http://localhost:3000/students").then((res)=>res.json());
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"jnFvT":[function(require,module,exports,__globalThis) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, '__esModule', {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === 'default' || key === '__esModule' || Object.prototype.hasOwnProperty.call(dest, key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}],"alUnB":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "addStudent", ()=>addStudent);
+function addStudent(data) {
+    const options = {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+            "Content-Type": "application/json; charset=UTF-8"
+        }
+    };
+    return fetch("http://localhost:3000/students", options).then((res)=>res.json());
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}]},["7wZbQ","2R06K"], "2R06K", "parcelRequire724c", {})
 
 //# sourceMappingURL=goit-tema18.0f77c784.js.map
