@@ -726,32 +726,95 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 // 7.5. Додати можливість видалення студента. Для кожного студента в таблиці додати кнопку "Видалити". При натисканні на цю кнопку, виконати HTTP-запит DELETE /students/:id.
 var _getStudentsJs = require("./appi/getStudents.js");
 var _addStudentJs = require("./appi/addStudent.js");
+var _updateStudentJs = require("./appi/updateStudent.js");
+var _deleteStudentJs = require("./appi/deleteStudent.js");
+const tbody = document.querySelector(".list");
+const getStudentsBtn = document.getElementById("get-students-btn");
+const studentsTable = document.getElementById("students-table");
+const addStudentForm = document.getElementById("add-student-form");
+let currentId = null;
 // Функція для отримання всіх студентів
 function getStudents() {
-// твій код
+    (0, _getStudentsJs.fetchStudents)().then((res)=>renderStudents(res));
 }
 // Функція для відображення студентів у таблиці
 function renderStudents(students) {
-// твій код
+    const item = students.map(({ id, name, age, course, skills, email, isEnrolled })=>{
+        return `<tr id="${id}">
+                    <td class="student-id">${id}</td>
+                    <td class="student-name">${name}</td>
+                    <td class="student-age">${age}</td>
+                    <td class="student-course">${course}</td>
+                    <td class="student-skills">${skills}</td>
+                    <td class="student-email">${email}</td>
+                    <td class="student-status">${isEnrolled ? "\u041D\u0430\u0432\u0447\u0430\u0454\u0442\u044C\u0441\u044F" : "\u041D\u0435 \u043D\u0430\u0432\u0447\u0430\u0454\u0442\u044C\u0441\u044F"}</td>
+                    <td>
+                        <button class="edit" type="button">Edit</button>
+                        <button class="delete" type="button">Delete</button>
+                    </td>
+                </tr>`;
+    }).join("");
+    tbody.innerHTML = item;
 }
+getStudentsBtn.addEventListener("click", ()=>{
+    getStudents();
+    studentsTable.style.display = "table";
+});
 // Функція для додавання нового студента
-function addStudent(e) {
-// твій код
-}
+addStudentForm.addEventListener("submit", (e)=>{
+    e.preventDefault();
+    const student = {
+        name: addStudentForm.elements.name.value,
+        age: addStudentForm.elements.age.value,
+        course: addStudentForm.elements.course.value,
+        skills: addStudentForm.elements.skills.value,
+        email: addStudentForm.elements.email.value,
+        isEnrolled: addStudentForm.elements.isEnrolled.checked
+    };
+    if (currentId) (0, _updateStudentJs.apiUpdateStudents)(currentId, student).then(()=>{
+        getStudents();
+        addStudentForm.reset();
+        currentId = null;
+    });
+    else (0, _addStudentJs.apiAddStudents)(student).then(()=>{
+        getStudents();
+        addStudentForm.reset();
+    });
+});
 // Функція для оновлення студента
-function updateStudent(id) {
-// твій код
-}
-// Функція для видалення студента
-function deleteStudent(id) {
-// твій код
-}
+document.addEventListener("click", (e)=>{
+    if (e.target.classList.contains("edit")) {
+        const tr = e.target.closest("tr");
+        currentId = tr.id;
+        // addStudentForm.elements.id.value = tr.querySelector(".student-id").textContent;
+        addStudentForm.elements.name.value = tr.querySelector(".student-name").textContent;
+        addStudentForm.elements.age.value = tr.querySelector(".student-age").textContent;
+        addStudentForm.elements.course.value = tr.querySelector(".student-course").textContent;
+        addStudentForm.elements.skills.value = tr.querySelector(".student-skills").textContent;
+        addStudentForm.elements.email.value = tr.querySelector(".student-email").textContent;
+        addStudentForm.elements.isEnrolled.checked = tr.querySelector(".student-status").textContent === "\u041D\u0430\u0432\u0447\u0430\u0454\u0442\u044C\u0441\u044F";
+        return;
+    }
+    if (e.target.classList.contains("delete")) {
+        const id = e.target.closest("tr").id;
+        (0, _deleteStudentJs.apiDeleteStudents)(id).then(()=>{
+            getStudents();
+        });
+        return;
+    }
+}); // Функція для видалення студента
+ // document.addEventListener("click", (e) => {
+ //     if (e.target.classList.contains("delete")) {
+ //         const id = e.target.closest("tr").id;
+ //         apiDeleteStudents(id).then(getStudents);
+ //     }
+ // });
 
-},{"./appi/getStudents.js":"6zDTK","./appi/addStudent.js":"alUnB"}],"6zDTK":[function(require,module,exports,__globalThis) {
+},{"./appi/getStudents.js":"6zDTK","./appi/addStudent.js":"alUnB","./appi/updateStudent.js":"8WG9m","./appi/deleteStudent.js":"3Om9E"}],"6zDTK":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "getStudents", ()=>getStudents);
-function getStudents() {
+parcelHelpers.export(exports, "fetchStudents", ()=>fetchStudents);
+function fetchStudents() {
     return fetch("http://localhost:3000/students").then((res)=>res.json());
 }
 
@@ -788,8 +851,8 @@ exports.export = function(dest, destName, get) {
 },{}],"alUnB":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "addStudent", ()=>addStudent);
-function addStudent(data) {
+parcelHelpers.export(exports, "apiAddStudents", ()=>apiAddStudents);
+function apiAddStudents(data) {
     const options = {
         method: "POST",
         body: JSON.stringify(data),
@@ -798,6 +861,32 @@ function addStudent(data) {
         }
     };
     return fetch("http://localhost:3000/students", options).then((res)=>res.json());
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"8WG9m":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "apiUpdateStudents", ()=>apiUpdateStudents);
+function apiUpdateStudents(id, student) {
+    const options = {
+        method: "PUT",
+        body: JSON.stringify(student),
+        headers: {
+            "Content-Type": "application/json; charset=UTF-8"
+        }
+    };
+    return fetch(`http://localhost:3000/students/${id}`, options).then((res)=>res.json());
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"3Om9E":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "apiDeleteStudents", ()=>apiDeleteStudents);
+function apiDeleteStudents(id) {
+    const options = {
+        method: "DELETE"
+    };
+    return fetch(`http://localhost:3000/students/${id}`, options);
 }
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}]},["7wZbQ","2R06K"], "2R06K", "parcelRequire724c", {})

@@ -8,10 +8,14 @@ body {
 .container {
   background: #fff;
   border-radius: 8px;
-  max-width: 960px;
+  max-width: 1200px;
   margin: 20px auto;
   padding: 20px;
   box-shadow: 0 4px 6px #0000001a;
+}
+
+#students-table {
+  display: none;
 }
 
 h1, h2 {
@@ -61,5 +65,11 @@ form input {
   width: 100%;
   margin-bottom: 10px;
   padding: 6px;
+}
+
+.item {
+  align-items: center;
+  gap: 20px;
+  display: flex;
 }
 /*# sourceMappingURL=goit-tema18.2cdaf7bc.css.map */
